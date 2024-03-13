@@ -48,6 +48,17 @@ CREATE TABLE tolkien_character
  * Populate the new tables with data from the `middle_earth_character` table.
  * Use transaction(s).
  */
+insert into tolkien_character (id, name, gender_id, race_id, category_id)
+(select mec.id, mec.name, g.id, r.id, c.id from middle_earth_character as mec
+ join gender as g
+ on mec.gender = g.name
+ join race as r
+ on mec.race = r.name
+ join category as c
+ on mec.category = c.name
+
+
+);
 
 
 /**
